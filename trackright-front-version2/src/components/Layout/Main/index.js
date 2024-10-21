@@ -15,6 +15,14 @@ import { Button, Layout, Menu, theme } from "antd";
 
 const { Header, Sider, Content } = Layout;
 
+const items = new Array(15).fill(null).map((_, index) => ({
+  key: index + 1,
+  label: `nav ${index + 1}`,
+}));
+
+
+
+
 const Mainindex = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [heading, setHeading] = useState("Home");
@@ -104,90 +112,158 @@ const Mainindex = () => {
   const handleLogoClick = () => {
     setSelectedKey('1');
     setHeading('Home');
-    navigate('/home');  //--- code -- for -- future--
+    navigate('/home');  
     
    
   };
-
-  return (
-    <LayoutWrap>
+    return (
       <Layout>
-        <Sider
-          className="side_bar"
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-        >
+        <Header style={{ display: "flex", alignItems: "center" }}>
           <div className="demo-logo-vertical">
-            <div className={`d-flex`}>
+            <div className="d-flex">
               <Link to={`home`} onClick={handleLogoClick}>
-                <img
-                  className="logo_Style"
-                  src={TrackRightLogo}
-                  alt="TrackRight"
-                />
+                <img className="logo_Style" src={TrackRightLogo} alt="TrackRight" />
               </Link>
               {!collapsed && (
                 <Link to={`home`} onClick={handleLogoClick}>
-                  <img
-                    className="Logo_txt"
-                    src={TrackRightLogoTxt}
-                    alt="TrackRight"
-                  />
+                  <img className="Logo_txt" src={TrackRightLogoTxt} alt="TrackRight" />
                 </Link>
               )}
             </div>
-            <Button
-              type="text"
-              icon={
-                <img
-                  src={arrow}
-                  alt={collapsed ? "arrow-left" : "arrow-right"}
-                  className={collapsed ? "arrow-left" : "arrow-right"}
-                />
-              }
-              onClick={() => setCollapsed(!collapsed)}
-              style={{
-                fontSize: "16px",
-                width: 64,
-                height: 64,
-              }}
-            />
+       
           </div>
+  
           <Menu
             theme="dark"
-            mode="inline"
-            defaultSelectedKeys={[selectedKey]}
+            mode="horizontal"
+            defaultSelectedKeys={['1']}
             onClick={({ key }) => handleMenuClick(key)}
             items={item}
+            style={{ flex: 1, minWidth: 0 }}
           />
-        </Sider>
-        <Layout>
-          <Header
-            style={{
-              padding: 0,
-              background: colorBgContainer,
-            }}
-          >
-            <p className="ml-5">
-              <h1>{heading}</h1>
-            </p>
-          </Header>
-          <Content
-            style={{
-              margin: "24px 16px",
-              padding: 24,
-              minHeight: 280,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          >
-            <Outlet />
-          </Content>
-        </Layout>
+        </Header>
+  
+        <Content
+          style={{
+            margin: "24px 16px",
+            padding: 24,
+            minHeight: 280,
+            background: colorBgContainer,
+            borderRadius: borderRadiusLG,
+          }}
+        >
+          <h1>{heading}</h1>
+          <Outlet />
+        </Content>
       </Layout>
-    </LayoutWrap>
-  );
-};
+    );
+}
 
+
+
+
+
+
+
+
+
+    // <LayoutWrap>
+    //   <Layout>
+    //     <Sider
+    //       className="side_bar"
+    //       trigger={null}
+    //       collapsible
+    //       collapsed={collapsed}
+    //     >
+    //       <div className="demo-logo-vertical">
+    //         <div className={`d-flex`}>
+    //           <Link to={`home`} onClick={handleLogoClick}>
+    //             <img
+    //               className="logo_Style"
+    //               src={TrackRightLogo}
+    //               alt="TrackRight"
+    //             />
+    //           </Link>
+    //           {!collapsed && (
+    //             <Link to={`home`} onClick={handleLogoClick}>
+    //               <img
+    //                 className="Logo_txt"
+    //                 src={TrackRightLogoTxt}
+    //                 alt="TrackRight"
+    //               />
+    //             </Link>
+    //           )}
+    //         </div>
+    //         <Button
+    //           type="text"
+    //           icon={
+    //             <img
+    //               src={arrow}
+    //               alt={collapsed ? "arrow-left" : "arrow-right"}
+    //               className={collapsed ? "arrow-left" : "arrow-right"}
+    //             />
+    //           }
+    //           onClick={() => setCollapsed(!collapsed)}
+    //           style={{
+    //             fontSize: "16px",
+    //             width: 64,
+    //             height: 64,
+    //           }}
+    //         />
+    //       </div>
+    //       <Menu
+    //         theme="dark"
+    //         mode="inline"
+    //         defaultSelectedKeys={[selectedKey]}
+    //         onClick={({ key }) => handleMenuClick(key)}
+    //         items={item}
+    //       />
+    //     </Sider>
+    //     <Layout>
+    //       <Header
+    //         style={{
+    //           padding: 0,
+    //           background: colorBgContainer,
+    //         }}
+    //       >
+    //         <p className="ml-5">
+    //           <h1>{heading}</h1>
+    //         </p>
+    //       </Header>
+    //       <Content
+    //         style={{
+    //           margin: "24px 16px",
+    //           padding: 24,
+    //           minHeight: 280,
+    //           background: colorBgContainer,
+    //           borderRadius: borderRadiusLG,
+    //         }}
+    //       >
+    //         <Outlet />
+    //       </Content>
+    //     </Layout>
+    //   </Layout>
+    // </LayoutWrap>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 export default Mainindex;
